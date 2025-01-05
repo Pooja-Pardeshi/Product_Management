@@ -1,0 +1,36 @@
+<h2>Product Master</h2>
+
+<!-- Add Product Form -->
+<form (ngSubmit)="addProduct()">
+  <label for="productName">Product Name:</label>
+  <input type="text" id="productName" [(ngModel)]="newProduct.name" name="name" required>
+
+  <label for="category">Category:</label>
+  <select id="category" [(ngModel)]="newProduct.categoryId" name="categoryId" required>
+    <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+  </select>
+
+  <button type="submit">Add Product</button>
+</form>
+
+<!-- Products List -->
+<table>
+  <thead>
+    <tr>
+      <th>Product ID</th>
+      <th>Product Name</th>
+      <th>Category Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.categoryName }}</td>
+      <td>
+        <button (click)="deleteProduct(product.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
